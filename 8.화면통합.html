@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>화면 구조 잡기 상세 구조</title>
+    <style>
+        /* 화면 구조 잡기 스타일 시작*/
+        div, form{
+            box-sizing: border-box;
+
+           /* border: 1px solid red;*/
+        }
+        /*전체 감싸는 wrap*/
+        .wrap{
+            width: 1000px;
+            height: 800px;
+            margin: auto;
+
+        }
+        /* 크게 네가지 영역 */
+        /* header, navigator, content, footer */
+        /* 공통 스타일 먼저 부여*/
+
+        .wrap>div{
+            width: 100%;
+        }
+        /*각각의 스타일 부여*/
+        #header{
+            
+            height: 20%;
+        }
+        #navigator{
+            height: 5%;
+        }
+        #content{
+            height: 55%;
+        }
+        #footer{
+            height: 20%;
+        }
+        /* 상세 영역 */
+        /* header_1, header_2, header_3 */
+        /* content_1, content_2, content_3 */
+        /* 공통스타일 먼저 부여 */
+        #header>div,#content>div{
+            height: 100%;
+            float: left;
+        }
+
+        /* 각각의 스타일 부여 */
+        #header_1{
+            width: 20%;
+        }
+        #header_2{
+            width: 65%;
+        }
+        #header_3{
+             width: 15%;
+        }
+        
+        #content_1{
+            width: 15%;   
+        }
+        #content_2{
+            width: 60%;
+        }
+        #content_3{
+            width: 25%;
+        }
+        /* 화면 구조 잡기 스타일 끝*/
+
+
+        /* footer 스타일 영역 시작 */
+        /* footer 상세 영역 나누기 */
+        /* footer_1, footer_2 */
+        /* 공통스타일 먼저 부여*/
+        #footer>div{
+            width: 100%;
+        }
+
+        /*각각의 스타일 부여*/
+        #footer_1{
+            height: 20%;
+        }
+        #footer_2{
+            height: 80%;
+        }
+        /* footer_2 상세 영역 나누기*/
+        /* p1, p2*/
+        #footer_2>p{
+            /*border: 1px solid blue;*/
+            width: 100%;
+            box-sizing: border-box;
+            margin: 0px;
+            /*
+                p  태그는 기본적으로 위,아래 margin 을 갖고있음
+                margin 을 없애서 부모요소 안쪽으로 넣어버리기!!
+            */
+            font-size: 12px;
+            
+            /*
+                요소에 height 속성을 주지 않으면
+                자동으로 안쪽 content 내용의 길이만큼 height 가 잡힘
+                하지만, height 속성을 주면
+                안쪽 텍스트의 font-size 가 클 때 글씨가 빠져나오게됨
+                font-size 를 줄여주기!!
+            */
+        }
+        /* 각각의 스타일 부여 */
+        #p1{
+            height: 80%;
+            padding: 5px 15px;
+            /*
+                테두리와 글자 사이의 간격이 너무 촘촘함
+                padding 으로 안쪽 여백 부여하기!!
+            */
+        }
+        #p2{
+            height: 20%;
+            text-align: center;
+        }
+        /* footer_1 의 상세 영역 다듬기*/
+        #footer_1>a{
+            text-decoration : none;
+            color:black;
+            font-weight: 600;
+            margin : 15px;
+            vertical-align: middle;
+
+            /*
+                미세하게 위쪽으로 글자들이 쏠려있음
+                수직 구조에서 가운데로 오게끔 효고 추가하기!!
+            */
+        }
+        /* footer 스타일 영여 끝 */
+        /* content_3 스타일 영역 시작*/
+         /* 전체를 감싸는 login_form */
+         #login_form {
+            width: 100%;
+            height: 30%;
+
+        }
+        /* login_form 상세 영역 나누기 */
+        /* login_form_input, login_form_etc */
+        /* 공통스타일 먼저 부여 */
+        #login_form>*{
+            width: 100%;
+            
+        }
+        /* 각각의 스타일 부여 */
+        #login_form_input{
+            
+            height: 80%;
+        }
+        #login_form_etc{
+            height: 20%;
+            text-align: center; /* a 요소들 가운데 정렬 */
+        }
+
+        /* login_form_input 상세 영역 나누기 */
+        /* login_input_id_pwd, login_input_btn */
+        /* 공통 스타일 먼저 부여 */
+        #login_form_input>*{
+            height: 100%;
+            float: left;
+        }
+
+        /* 각각의 스타일 부여 */
+        #login_input_id_pwd{
+            width: 65%;
+        }
+        #login_input_btn{
+            width: 35%;
+        }
+        /* login_input_id_pwd 상세 스타일 부여 */
+        /* input 요소 두개 (아이디, 비빌번호 입력용)*/
+        #login_input_id_pwd>input{
+            width: 100%;
+            height: 50%;
+            box-sizing: border-box;
+            /* 입력창 또한 테두리를 포함한 사이즈로 지정하기 */
+        }
+
+        
+        /* login_input_btn 상세 스타일 부여*/
+        /* input 요소 한개 (로그인 버튼용)*/
+        #login_input_btn>input{
+            width: 100%;
+            height: 100%;
+        }
+
+        /* logn_form_etc 상세 스타일 부여*/
+        #login_form_etc>a{
+            text-decoration: none;
+            color: black;
+            font-size: 12px;
+            margin: 10px;
+            vertical-align: middle;
+            /* text-align: center; */
+            /*
+                a 요소는 인라인 요소이기 때문에
+                content 영역의 텍스트를 가운데 정렬하게 되면
+                하나 마나임!!
+                a 요소들을 감싸고 있는 부모 요소에 가운데 정렬 걸기!!
+            */
+        }
+        /* content_3 스타일 영역 끝*/
+        /* header_2 스타일 영역 시작 */
+         /*합칠때 가져갈 스타일이므로 따로 작성*/
+         #header_2{
+           position: relative;
+           /*
+            search_form 을 절대위치로 이동시키기 위해
+            부모요소인 header_2 에 기준점 잡기!!
+           */
+            
+        }
+
+        /* 전체를 감싸는 search_form */
+        #search_form{
+            width: 80%;
+            height: 20%;
+            margin: auto;
+            position:   absolute; /* 절대위치로 이동시켜야겠다. */
+            /*
+                search_form 을 절대위치로 이동시키기 위해 부모요소인 header_2에 기준점 잡기
+            */
+
+            top :  0px;
+            bottom : 0px;
+            left: 0px;
+            right: 0px;
+
+            /*
+                사방에서 0px 로 잡아당기게 되면
+                정확하게 정중앙에 위치하게 됨
+            */
+
+        }
+
+        /* search_form 의 상세 영역 나누기 */
+        /* search_text, search_btn */
+        /* 공통 스타일 먼저 부여 */
+        #search_form >div{
+            height: 100%;
+            float: left;
+        }
+
+        /* 각각의 스타일 부여 */
+        #search_text{
+            width: 80%;
+
+        }
+        #search_btn{
+            width: 20%;
+        }
+        /* input 요소들에 상세 스타일 부여*/
+        /* 검색어 입력용 input, 검색버튼 input*/
+        #search_form input{
+            width: 100%;
+            height: 100%;
+        }
+        /* header_2 스타일 영역 끝 */
+        /* navigator 스타일 영역 시작 */
+         /*메인메뉴를 나타내는 ul 영역*/
+         #navi{
+            /*border: 1px solid blue;*/
+            margin : 0px;
+            /*
+                p 태그와 마찬가지로 ul 태그 또한
+                기본적으로 위, 아래 margin 이 존재함!!
+                margin 없애기!!
+            */
+            height: 100%;
+            box-sizing: border-box;
+            padding : 0px;
+            /*
+                ul 태그는 기본적을 padding 또한 존재함
+                padding 없애기!!
+
+            */
+            list-style-type: none;
+
+        }
+
+        /* 메인메뉴 항목을 나타내는 각각의 li */
+        #navi>li{
+            /*border: 1px solid green;*/
+            width: 15%;
+            height: 100%;
+            float: left;
+            text-align: center;
+        }
+        /* 메인, 서브 메뉴들의 a */
+        #navi a{
+            /*border : 1px solid orange;*/
+            text-decoration: none;
+            color: lightcoral ;
+            font-size: 13px;
+            font-weight: 900;
+            width: 100%;
+            height: 100%;
+            display : block;
+            /* 
+                대부분의 인라인요소들은 width, height 속성이 
+                적용되지않음!!
+                a 태그를 width, height 속성이 적용되게끔
+                블럭요소화 해주기!!
+            */
+            /*vertical-align: middle;*/
+            /* 
+                vertical-align 속성은 블럭요소에서 적용할 수 없음!!
+                오로지 인라인요소에서만 적용 가능
+            */
+
+            line-height: 35px;
+            /*
+                만약, 블럭요소 내에서 텍스트를 수직 구조에서
+                가운데 배치를 하고싶다면
+                line-height 속성을 이용해야함 !!
+                이 때, 보통은 해당 요소의 height 값과 동일하게 부여하면
+                수직으로 가운데에 글자가 배치됨!!
+                (지금은 % 절대적인 a 태그의 height 값을 모르기 때문에
+                얼추 임의로 35px 정도 준 것)
+            */
+            transform: scale(1); 
+            /* 
+            요소를 1배 확대하겠다.
+            => 눈에는 안띄지만 충분히 연결이 끊어졌던게 붙어짐!!
+             */
+            /*
+                화면 통합 시 이슈 발생
+                : 메인메뉴를 나타내는 a 태그와
+                서브메뉴를 나타내는 ul 태그와 연결이
+                미세하게 살짝 끊겨있음!!
+                
+                해결방법
+                : transform 속성을 활용
+                (애니메이션 효과를 줄 수 있는 속성)
+
+
+            */
+            
+
+        }
+        /* 서브메뉴를 나타내는 ul 영역 */
+        #navi>li>ul {
+            /*border : 1px solid purple;*/
+            padding: 0px;
+            list-style-type: none;
+            display: none;
+            /*
+                평소에는 안보여지게,
+                또한 공간 차지를 안하게끔  숨김 처리
+            */
+
+        }
+
+        /* 
+        메인메뉴 항목을 나타내는 a에 마우스가 올라가는 순간
+        해당 서브메뉴가 나타나게끔 효과 부여
+        */
+        #navi>li>a:hover+ul {
+            display: block;
+            /*
+                ul 태그는 블럭요소이므로 display : block 으로 노출시키기
+            */
+        }
+        /*
+            서브메뉴에도 마우스가 올라갔을 때 
+            유지가 되게끔 해줘야 함!!
+        */
+        #navi>li>ul:hover{
+            display: block;
+        }
+
+        /* 메뉴 텍스트 효과 간단하게 부여 */
+        #navi a:hover{
+            color: crimson;
+            font-size : 15px;
+        }
+        /* navigator 스타일 영역 끝 */
+        /*header_1 스타일 영역 시작*/
+        /* 이미지의 부모요소를 기준점으로 잡아주기*/
+        #header_1{
+            position: relative;
+        }
+        /* logo 이미지를 절대위치로 옮기기*/
+        #logo{
+            margin: auto;
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+        }
+        /*header_1 스타일 영역 끝*/
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div id="header">
+            <div id="header_1">
+                <!-- ../-->
+                 
+                <a href="https://kh-academy.co.kr/main/main.kh"><img src="../resources/image/kh_logo.jpg" id="logo"></a>
+               
+            </div>
+            <div id="header_2">
+                        
+        <!-- 검색창 영역을 form 태그로 나누기 -->
+        <form id="search_form" action="search.do" method="get">
+            <!-- 검색어를 입력할 부분 -->
+            <div id="search_text">
+                <input type="search" name="keyword">
+            </div>
+            <!-- 검색 버튼이 들어갈 부분 -->
+            <div id="search_btn">
+                <input type="submit" value="검색">
+            </div>
+            </form>
+    
+            </div>
+            <div id="header_3"></div>
+        </div>
+        <div id="navigator">
+             <!-- 메인메뉴를 나타내는 ul 영역 -->
+         <ul id="navi">
+            <li><a href="">Java</a></li>
+            <li><a href="">Oracle</a></li>
+
+            <li>
+                <a href="">Front_end</a>
+                <ul>
+                    <li><a href="">HTML</a></li>
+                    <li><a href="">CSS</a></li>
+                    <li><a href="">JavaScript</a></li>
+                    <li><a href="">jQuery</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">Server</a>
+                <ul>
+                    <li><a href="">JDBC</a></li>
+                    <li><a href="">Servlet</a></li>
+                    <li><a href="">JSP</a></li>
+                    <li><a href="">Ajax</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">Framework</a>
+                <ul>
+                    <li><a href="">MyBatis</a></li>
+                    <li><a href="">Spring</a></li>
+                </ul>
+            </li>
+         </ul>
+
+        </div> <!-- 메뉴바 -->
+        <div id="content">
+            <div id="content_1"></div>
+            <div id="content_2">
+        
+            </div>
+            <div id="content_3">
+                    <!-- 1. 전체내용을 감싸는 div -->
+         <div id="login_form">
+            <!-- 2_1. 입력을 받는 input 요소들이 위치할 form 영역 -->
+            <form id="login_form_input" action="login.me" method="post">
+            <!-- 3_1. 왼쪽 : 아이디와 비번을 입력받을 text 영역 -->
+            <div id="login_input_id_pwd">
+                <input type="text" name="userId"
+                                         placeholder="아이디" required> <br>
+                <input type="password" name="userId"
+                                             placeholder="비밀번호" required>
+
+
+            </div>
+            <!-- 3_2. 오른쪽 : 로그인버튼이 위치할 button 영역 -->
+            <div id="login_input_btn">
+                <input type="submit" value="로그인">
+            </div>
+            </form>
+            <!-- 
+            2_2. 회원가입, ID/PWD 찾기 페이지 요청 a 태그들이 위치할 div 영역
+             -->
+            <div id="login_form_etc">
+                <a href="">회원가입</a>
+                <a href="">ID/PW찾기</a>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div id="footer_1">
+                <a href="">이용약관</a> |
+                <a href="">개인정보취급방침</a> |
+                <a href="">인재채용</a> |
+                <a href="">고객센터</a>
+    
+            </div>
+            <div id="footer_2">
+                <p id="p1">
+                    강남지원 1관 : 서울특별시 강남구 테헤란로14길 6 남도빌딩 2F, 3F, 4F, 5F, 6F <br>
+                    강남지원 2관 : 서울특별시 강남구 테헤란로10길 9 그랑프리 빌딩 4F, 5F, 7F <br>
+                    강남지원 3관 : 서울특별시 강남구 테헤란로 130 호산빌딩 5F, 6F <br>
+                    종로지원 : 서울특별시 중구 남대문로 120 그레이츠 청계(구 대일빌딩) 2F, 3F <br>
+                    당산지원 : 서울특별시 영등포구 선유동2로 57 이레빌딩(구관) 19F, 20F
+                </p>
+                <p id="p2">
+                    Copyright © 1998-2024 KH Information Educational Institute All Right Reserved
+                </p>  <!-- p 또한 블럭요소라 영역 나누기 가능 -->
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

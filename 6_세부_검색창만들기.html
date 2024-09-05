@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>세부_검색창만들기</title>
+    <style>
+
+        div, form{
+            box-sizing: border-box;
+            /*border : 1px solid red;*/
+        }
+
+        /* 작업용 임시 스타일 - 합칠때 안겨져갈 것*/
+        #header_2{
+            width: 600px;
+            height: 150px;
+            
+        }
+
+        
+        /*합칠때 가져갈 스타일이므로 따로 작성*/
+        #header_2{
+           position: relative;
+           /*
+            search_form 을 절대위치로 이동시키기 위해
+            부모요소인 header_2 에 기준점 잡기!!
+           */
+            
+        }
+
+        /* 전체를 감싸는 search_form */
+        #search_form{
+            width: 80%;
+            height: 20%;
+            margin: auto;
+            position:   absolute; /* 절대위치로 이동시켜야겠다. */
+            /*
+                search_form 을 절대위치로 이동시키기 위해 부모요소인 header_2에 기준점 잡기
+            */
+
+            top :  0px;
+            bottom : 0px;
+            left: 0px;
+            right: 0px;
+
+            /*
+                사방에서 0px 로 잡아당기게 되면
+                정확하게 정중앙에 위치하게 됨
+            */
+
+        }
+
+        /* search_form 의 상세 영역 나누기 */
+        /* search_text, search_btn */
+        /* 공통 스타일 먼저 부여 */
+        #search_form >div{
+            height: 100%;
+            float: left;
+        }
+
+        /* 각각의 스타일 부여 */
+        #search_text{
+            width: 80%;
+
+        }
+        #search_btn{
+            width: 20%;
+        }
+        /* input 요소들에 상세 스타일 부여*/
+        /* 검색어 입력용 input, 검색버튼 input*/
+        #search_form input{
+            width: 100%;
+            height: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div id="header_2">
+
+        <!-- 검색창 영역을 form 태그로 나누기 -->
+        <form id="search_form" action="search.do" method="get">
+        <!-- 검색어를 입력할 부분 -->
+        <div id="search_text">
+            <input type="search" name="keyword">
+        </div>
+        <!-- 검색 버튼이 들어갈 부분 -->
+        <div id="search_btn">
+            <input type="submit" value="검색">
+        </div>
+        </form>
+
+    </div>
+
+</body>
+</html>
